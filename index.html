@@ -29,9 +29,11 @@
   </head>
   <body>
     <!-- section::header  -->
-    <header class="w-4/5 mx-auto">
+    <header
+      class="w-4/5 mx-auto mt-[2rem] lg:min-h-[calc(100vh_-_2rem)] flex flex-col gap-[2rem] justify-center items-center"
+    >
       <!-- sub-section:: navbar -->
-      <nav class="navbar mt-[3.125rem]">
+      <nav class="navbar">
         <div
           class="navbar-start justify-between lg:justify-start w-full md:w-9/12 lg:w-1/2"
         >
@@ -109,10 +111,54 @@
           </div>
         </div>
       </nav>
+
+      <!-- sub-section:: banner  -->
+      <section
+        id="banner"
+        class="flex flex-col gap-[2.5rem] justify-center items-center"
+      >
+        <div
+          class="banner-description text-center flex flex-col justify-center items-center"
+        >
+          <p>
+            <span class="font-bold text-[#13131399] text-[1.24rem]">
+              Bringing Families Together
+            </span>
+            <span>❤️‍🔥</span>
+          </p>
+          <h1
+            class="font-black text-[#131313] text-[3.7rem] leading-[4.5rem] mt-[1.2rem]"
+          >
+            Your Path to Adoption <br />
+            Starts Here
+          </h1>
+          <p class="text-base leading-[1.24rem] mt-[1.24rem] md:w-2/3 mx-auto">
+            Adopt a loving pet today! Our rescued cats and dogs are waiting for
+            a forever home. Safe, healthy, and vaccinated—find your perfect
+            companion and make a difference with pet adoption.
+          </p>
+          <a
+            href="#main_contianer"
+            type="button"
+            class="btn bg-[#0E7A81] text-white mt-[1.65rem] font-bold text-[1.03rem]"
+          >
+            View More
+          </a>
+        </div>
+        <figure
+          class="flex justify-center items-center w-[41.35rem] h-[23.2rem]"
+        >
+          <img
+            src="./asset/images/pet.webp"
+            alt="pet"
+            class="w-full h-full object-cover"
+          />
+        </figure>
+      </section>
     </header>
 
     <!-- section:: main  -->
-    <main></main>
+    <main id="main_contianer"></main>
 
     <!-- section:: footer  -->
     <footer></footer>
