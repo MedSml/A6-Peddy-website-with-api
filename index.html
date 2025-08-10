@@ -277,66 +277,9 @@
       </section>
 
       <!-- section::modal  -->
-      <button class="btn hidden" onclick="pet_details_modal.showModal()">
-        open modal
-      </button>
       <dialog id="pet_details_modal" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box p-[1.125rem]">
-          <div class="card">
-            <figure>
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                alt="Shoes"
-              />
-            </figure>
-            <div class="card-body">
-              <h2
-                class="card-title font-inter font-bold text-[#131313] text-[1.24rem]"
-              >
-                Alessia Max
-              </h2>
-              <!-- pet info  -->
-              <div class="mb-[0.5rem] grid md:grid-cols-2 md:gap-x-[2.5rem]">
-                <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-qrcode"></i> Breed: Golder retriever
-                </p>
-                <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-calendar"></i> Birth: 2024
-                </p>
-                <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-mercury"></i> Gender: Female
-                </p>
-                <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-dollar-sign"></i> Price : 199$
-                </p>
-                <p class="text-[1rem] text-[#131313B3] md:col-span-2">
-                  <i class="fa-solid fa-mercury"></i> Vaccinated status:
-                  Partially
-                </p>
-              </div>
-
-              <!-- pet details  -->
-              <div>
-                <p
-                  class="font-inter font-semibold text-[#131313] text-[0.825rem] md:text-[1rem]"
-                >
-                  Details Information
-                </p>
-                <p
-                  class="font-inter text-[#131313B3] text-[0.825rem] md:text-[1rem] leading-[1.24rem] mt-3"
-                >
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                  <li
-                    class="font-inter text-[#131313B3] text-[0.825rem] md:text-[1rem] leading-[1.24rem] mt-3"
-                  >
-                    The point of using is that it has a more-or-less normal
-                    distribution of letters, as opposed to using.
-                  </li>
-                </p>
-              </div>
-            </div>
-          </div>
+          <div id="modal-content" class="card"></div>
           <div>
             <form method="dialog">
               <!-- if there is a button in form, it will close the modal -->

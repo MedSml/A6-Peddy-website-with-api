@@ -3,6 +3,7 @@ const loader = document.querySelector("#spinner");
 const petContainer = document.querySelector("#pet-container");
 const petCardsContainer = document.querySelector("#pet-cards-container");
 const errorContainer = document.querySelector("#no-information");
+const modalBodyContent = document.querySelector("#modal-content");
 
 // show spinner before data load
 petContainer.classList.add("hidden");
@@ -86,7 +87,7 @@ const displayPetIntoCard = (pets) => {
                 >
                   Adopt
                 </button>
-                <button
+                <button onclick="loadPetDetails('${pet?.petId}')"
                   class="btn border border-[#0E7A8126] bg-white rounded text-[#0E7A81] hover:bg-[#0E7A81B3] hover:border-[#0E7A81] hover:text-white hover:rounded-2xl transition-all duration-[2000ms]"
                   type="button"
                 >
@@ -197,6 +198,80 @@ const loadCategorizePetData = async (categoryName) => {
   } catch (err) {
     console.error("Error Has Found:", err);
   }
+};
+
+const loadPetDetails = async (petId) => {
+  try {
+    const responseForPetDetails = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/pet/${petId}`
+    );
+    const detailsData = await responseForPetDetails.json();
+
+    // call for show pet detail in a modal
+    showModalWithPetDetails(detailsData?.petData);
+  } catch (err) {
+    console.error("Error has found:", err);
+  }
+};
+
+const showModalWithPetDetails = (petInfo) => {
+  modalBodyContent.innerHTML = `
+<figure>
+              <img
+                src="${petInfo?.image}"
+                alt="${petInfo?.breed}"
+                class="w-full object-cover rounded-md"
+              />
+            </figure>
+            <div class="card-body">
+              <h2
+                class="card-title font-inter font-bold text-[#131313] text-[1.24rem]"
+              >
+                ${petInfo?.pet_name}
+              </h2>
+              <!-- pet info  -->
+              <div class="mb-[0.5rem] grid md:grid-cols-2 md:gap-x-[2.5rem]">
+                <p class="text-[1rem] text-[#131313B3]">
+                  <i class="fa-solid fa-qrcode"></i> Breed: ${petInfo?.breed}
+                </p>
+                <p class="text-[1rem] text-[#131313B3]">
+                  <i class="fa-solid fa-calendar"></i> Birth: ${dateFormate(
+                    petInfo?.date_of_birth
+                  )}
+                </p>
+                <p class="text-[1rem] text-[#131313B3]">
+                  <i class="fa-solid fa-mercury"></i> Gender: ${petInfo?.gender}
+                </p>
+                <p class="text-[1rem] text-[#131313B3]">
+                  <i class="fa-solid fa-dollar-sign"></i> Price : ${
+                    petInfo?.price
+                  }$
+                </p>
+                <p class="text-[1rem] text-[#131313B3] md:col-span-2">
+                  <i class="fa-solid fa-mercury"></i> Vaccinated status:${
+                    petInfo?.vaccinated_status
+                  }
+                </p>
+              </div>
+
+              <!-- pet details  -->
+              <div>
+                <p
+                  class="font-inter font-semibold text-[#131313] text-[0.825rem] md:text-[1rem]"
+                >
+                  Details Information
+                </p>
+                <p
+                  class="font-inter text-justify text-[#131313B3] text-[0.825rem] md:text-[1rem] leading-[1.24rem] mt-3"
+                >
+                  ${petInfo?.pet_details}
+                </p>
+              </div>
+            </div>
+`;
+
+  // open modal
+  pet_details_modal.showModal();
 };
 
 // calling function globally
