@@ -1,8 +1,11 @@
-// run spinner
-const petContainer = document.querySelector("#pet-container");
-petContainer.classList.add("hidden");
-
+//  get elements
 const loader = document.querySelector("#spinner");
+const petContainer = document.querySelector("#pet-container");
+const petCardsContainer = document.querySelector("#pet-cards-container");
+const errorContainer = document.querySelector("#no-information");
+
+// show spinner before data load
+petContainer.classList.add("hidden");
 loader.classList.replace("hidden", "flex");
 
 // function:: fetching all pets data from server (All Pets)
@@ -22,7 +25,6 @@ const loadAllPetsData = async () => {
 
 // function::display all pets data  as card
 const displayPetIntoCard = (pets) => {
-  const petCardsContainer = document.querySelector("#pet-cards-container");
   petCardsContainer.innerHTML = "";
 
   pets.forEach((pet) => {
@@ -153,6 +155,7 @@ const displayCategoryButtons = (categories) => {
       deactiveButtons();
 
       // active the buttons
+
       categoryButton.classList.add("active");
     };
   });
@@ -173,14 +176,23 @@ const loadCategorizePetData = async (categoryName) => {
       `https://openapi.programming-hero.com/api/peddy/category/${categoryName}`
     );
     const categorizeData = await responseForCategoryName.json();
+    const categorizePetData = categorizeData.data;
 
     // running the spinner before loading the data
     setTimeout(() => {
       petContainer.classList.remove("hidden");
       loader.classList.replace("flex", "hidden");
 
-      // call for display
-      displayPetIntoCard(categorizeData.data);
+      if (categorizePetData.length === 0) {
+        petCardsContainer.classList.add("hidden");
+        errorContainer.classList.replace("hidden", "flex");
+      } else {
+        errorContainer.classList.replace("flex", "hidden");
+        petCardsContainer.classList.remove("hidden");
+
+        // call for display
+        displayPetIntoCard(categorizePetData);
+      }
     }, 2000);
   } catch (err) {
     console.error("Error Has Found:", err);
