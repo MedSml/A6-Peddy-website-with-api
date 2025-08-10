@@ -117,20 +117,39 @@ const loadCategoryMenu = async () => {
 const displayCategoryButtons = (categories) => {
   const categoriesContainer = document.querySelector("#categories-container");
   categories.forEach((category) => {
-    const categoryButton = document.createElement("div");
+    const categoryButton = document.createElement("button");
 
-    categoryButton.innerHTML = `
-    <button
-          class="font-inter font-bold text-[#131313] text-[1.24rem] bg-white border border-[#0E7A8126] capitalize py-[1.24rem] rounded-md flex justify-center items-center gap-[0.825rem] transition-all duration-[2000ms] ease-in-out w-full cursor-pointer"
-          type="button"
-        >
+    categoryButton.id = `btn-${category?.category}`;
+
+    categoryButton.type = "button";
+
+    categoryButton.classList =
+      "font-inter font-bold text-[#131313] text-[1.24rem] bg-white border border-[#0E7A8126] capitalize py-[1.24rem] rounded-md inline-flex justify-center items-center gap-[0.825rem] transition-all duration-[2000ms] ease-in-out cursor-pointer button-identifier";
+
+    categoryButton.innerHTML = `   
           <img src="${category?.category_icon}" alt="${category?.category}" />
           <span>${category?.category}</span>
-        </button>
     `;
 
     categoriesContainer.appendChild(categoryButton);
+
+    //   event listener: for category button
+    categoryButton.onclick = () => {
+      // deactive the buttons
+      deactiveButtons();
+
+      // active the buttons
+      categoryButton.classList.add("active");
+    };
   });
+};
+
+// function: deactive the category buttons
+const deactiveButtons = () => {
+  const buttons = document.getElementsByClassName("button-identifier");
+  for (button of buttons) {
+    button.classList.remove("active");
+  }
 };
 
 // calling function globally
