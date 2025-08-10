@@ -16,7 +16,7 @@ const loadAllPetsData = async () => {
 // function::display all pets data  as card
 const displayPetIntoCard = (pets) => {
   const petCardsContainer = document.querySelector("#pet-cards-container");
-  //   petCardsContainer.innerHTML = "";
+  petCardsContainer.innerHTML = "";
 
   pets.forEach((pet) => {
     const petCard = document.createElement("div");
@@ -124,7 +124,7 @@ const displayCategoryButtons = (categories) => {
     categoryButton.type = "button";
 
     categoryButton.classList =
-      "font-inter font-bold text-[#131313] text-[1.24rem] bg-white border border-[#0E7A8126] capitalize py-[1.24rem] rounded-md inline-flex justify-center items-center gap-[0.825rem] transition-all duration-[2000ms] ease-in-out cursor-pointer button-identifier";
+      "font-inter font-bold text-[#131313] text-[1.24rem] bg-white border border-[#0E7A8126] capitalize py-[1.24rem] rounded-md inline-flex justify-center items-center gap-[0.825rem] transition-all duration-[1000ms] ease-in-out cursor-pointer button-identifier";
 
     categoryButton.innerHTML = `   
           <img src="${category?.category_icon}" alt="${category?.category}" />
@@ -135,6 +135,9 @@ const displayCategoryButtons = (categories) => {
 
     //   event listener: for category button
     categoryButton.onclick = () => {
+      // load categorize data (by category name)
+      loadCategorizePetData(category?.category);
+
       // deactive the buttons
       deactiveButtons();
 
@@ -149,6 +152,22 @@ const deactiveButtons = () => {
   const buttons = document.getElementsByClassName("button-identifier");
   for (button of buttons) {
     button.classList.remove("active");
+  }
+};
+
+// function:load all pet data categorize
+const loadCategorizePetData = async (categoryName) => {
+  try {
+    const responseForCategoryName = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/category/${categoryName}`
+    );
+    const categorizeData = await responseForCategoryName.json();
+
+    // call for display
+    console.log(categorizeData.data);
+    displayPetIntoCard(categorizeData.data);
+  } catch (err) {
+    console.error("Error Has Found:", err);
   }
 };
 
