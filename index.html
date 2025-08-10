@@ -249,7 +249,7 @@
         <!-- subsection::pet-cards-container  -->
         <div
           id="pet-cards-container"
-          class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[1.24rem] justify-center items-center md:col-span-5"
+          class="md:col-span-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[1.24rem] justify-center items-center"
         >
           <!-- 1st card  -->
           <div class="card bg-base-100 border border-[#1313131A] p-[1rem]">
@@ -589,6 +589,34 @@
           </div>
         </div>
 
+        <!-- subsection::no-information -->
+        <div
+          id="no-information"
+          class="md:col-span-5 flex-col justify-center items-center bg-[#13131308] rounded-xl py-[2.5rem] md:py-[3.5rem] lg:py-[5.2rem] hidden"
+        >
+          <figure>
+            <img
+              src="./asset/images/error.webp"
+              alt="no documents"
+              class="object-scale-down"
+            />
+          </figure>
+          <div class="text-center mt-[1.24rem]">
+            <h3 class="font-inter font-bold text-[1.65rem] text-[#131313]">
+              No Information Available
+            </h3>
+            <p
+              class="mt-[0.825rem] text-[#131313B3] text-[0.825rem] md:text-[1rem] leading-[1.34rem] md:w-2/3 md:mx-auto text-justify md:text-center"
+            >
+              We understand how important your search is, but there’s currently
+              no information available for the pet you're looking for. Please
+              check the details entered or try again later. Our database is
+              updated regularly—we’re here to help you reconnect when new
+              information comes in.
+            </p>
+          </div>
+        </div>
+
         <!-- subsection:: liked pet container  -->
         <div
           id="liked-pet-container"
@@ -608,7 +636,7 @@
     </main>
 
     <!-- section:: footer  -->
-    <footer class="bg-[#131313] py-[5.2rem]">
+    <footer class="bg-[#131313] py-[4rem] lg:py-[5.2rem]">
       <div class="w-4/5 mx-auto">
         <div class="footer sm:footer-horizontal text-white gap-10">
           <div>
