@@ -7,7 +7,7 @@ const loadAllPetsData = async () => {
     const allPetsData = await responseToPets.json();
 
     // call for display
-    displayPetIntoCard(allPetsData.pets);
+    displayPetIntoCard(allPetsData?.pets);
   } catch (err) {
     console.error("Error has Found:", err);
   }
@@ -100,5 +100,39 @@ const dateFormate = (birth_date) => {
   return `${day} ${month} ${year}`;
 };
 
+// function:fetching all category(menu) from server
+const loadCategoryMenu = async () => {
+  try {
+    const responseForCategoryMenu = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/categories`
+    );
+    const allCategory = await responseForCategoryMenu.json();
+    displayCategoryButtons(allCategory?.categories);
+  } catch (err) {
+    console.error("Error Has Arrived:", err);
+  }
+};
+
+// function: display all category as menu or navbar
+const displayCategoryButtons = (categories) => {
+  const categoriesContainer = document.querySelector("#categories-container");
+  categories.forEach((category) => {
+    const categoryButton = document.createElement("div");
+
+    categoryButton.innerHTML = `
+    <button
+          class="font-inter font-bold text-[#131313] text-[1.24rem] bg-white border border-[#0E7A8126] capitalize py-[1.24rem] rounded-md flex justify-center items-center gap-[0.825rem] transition-all duration-[2000ms] ease-in-out w-full cursor-pointer"
+          type="button"
+        >
+          <img src="${category?.category_icon}" alt="${category?.category}" />
+          <span>${category?.category}</span>
+        </button>
+    `;
+
+    categoriesContainer.appendChild(categoryButton);
+  });
+};
+
 // calling function globally
 loadAllPetsData();
+loadCategoryMenu();
