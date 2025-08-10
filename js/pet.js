@@ -24,8 +24,8 @@ const displayPetIntoCard = (pets) => {
     petCard.innerHTML = `
     <figure class="w-full">
               <img
-                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                alt="Shoes"
+                src="${pet?.image}"
+                alt="${pet?.breed}"
                 class="rounded-xl w-full object-cover"
               />
             </figure>
@@ -35,19 +35,29 @@ const displayPetIntoCard = (pets) => {
                 class="space-y-2 border-b border-[#1313131A] pb-[0.825rem] mb-[0.825rem]"
               >
                 <h5 class="font-inter font-bold text-[1.1rem] text-[#131313]">
-                  Mister Tartosh
+                  ${pet?.pet_name}
                 </h5>
                 <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-qrcode"></i> Breed: Golder retriever
+                  <i class="fa-solid fa-qrcode"></i> Breed: ${
+                    pet?.breed ? pet?.breed : "Not Available"
+                  }
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-calendar"></i> Birth: 2024
+                  <i class="fa-solid fa-calendar"></i> Birth: ${
+                    pet?.date_of_birth
+                      ? dateFormate(pet?.date_of_birth)
+                      : "Not Available"
+                  }
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-mercury"></i> Gender: Female
+                  <i class="fa-solid fa-mercury"></i> Gender: ${
+                    pet?.gender ? pet?.gender : "Not Available"
+                  }
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-dollar-sign"></i> Price : 199$
+                  <i class="fa-solid fa-dollar-sign"></i> Price : ${
+                    pet?.price ? `${pet?.price}$` : "Not Available"
+                  }
                 </p>
               </div>
 
@@ -79,6 +89,15 @@ const displayPetIntoCard = (pets) => {
 
     petCardsContainer.appendChild(petCard);
   });
+};
+
+// function:: for formate the pets date of birth(like: 15 Jan 2023)
+const dateFormate = (birth_date) => {
+  const date = new Date(birth_date);
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = date.toLocaleString("en-US", { month: "short" });
+  const year = date.getFullYear();
+  return `${day} ${month} ${year}`;
 };
 
 // calling function globally
