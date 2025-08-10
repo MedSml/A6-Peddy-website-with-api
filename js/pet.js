@@ -1,3 +1,10 @@
+// run spinner
+const petContainer = document.querySelector("#pet-container");
+petContainer.classList.add("hidden");
+
+const loader = document.querySelector("#spinner");
+loader.classList.replace("hidden", "flex");
+
 // function:: fetching all pets data from server (All Pets)
 const loadAllPetsData = async () => {
   try {
@@ -135,6 +142,10 @@ const displayCategoryButtons = (categories) => {
 
     //   event listener: for category button
     categoryButton.onclick = () => {
+      // show the spinner
+      petContainer.classList.add("hidden");
+      loader.classList.replace("hidden", "flex");
+
       // load categorize data (by category name)
       loadCategorizePetData(category?.category);
 
@@ -163,14 +174,26 @@ const loadCategorizePetData = async (categoryName) => {
     );
     const categorizeData = await responseForCategoryName.json();
 
-    // call for display
-    console.log(categorizeData.data);
-    displayPetIntoCard(categorizeData.data);
+    // running the spinner before loading the data
+    setTimeout(() => {
+      petContainer.classList.remove("hidden");
+      loader.classList.replace("flex", "hidden");
+
+      // call for display
+      displayPetIntoCard(categorizeData.data);
+    }, 2000);
   } catch (err) {
     console.error("Error Has Found:", err);
   }
 };
 
 // calling function globally
-loadAllPetsData();
 loadCategoryMenu();
+
+// running the spinner before loading the data
+setTimeout(() => {
+  petContainer.classList.remove("hidden");
+  loader.classList.replace("flex", "hidden");
+  // fetching the data
+  loadAllPetsData();
+}, 2000);
