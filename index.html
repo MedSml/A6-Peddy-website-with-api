@@ -263,21 +263,11 @@
         <!-- subsection:: liked pet container  -->
         <div
           id="liked-pet-container"
-          class="md:col-span-2 border border-[#1313131A] p-[1rem] rounded-md grid grid-cols-1 md:grid-cols-2 justify-center"
-        >
-          <!-- 1st  -->
-          <figure>
-            <img src="./asset/images/error.webp" alt="" />
-          </figure>
-
-          <!-- 2nd  -->
-          <figure>
-            <img src="./asset/images/error.webp" alt="" />
-          </figure>
-        </div>
+          class="md:col-span-2 border border-[#1313131A] p-[1rem] rounded-md grid grid-cols-1 md:grid-cols-2 gap-[0.825rem] justify-center"
+        ></div>
       </section>
 
-      <!-- section::modal  -->
+      <!-- section::modal-1 (for pet details) -->
       <dialog id="pet_details_modal" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box p-[1.125rem]">
           <div id="modal-content" class="card"></div>
@@ -293,6 +283,25 @@
           </div>
         </div>
       </dialog>
+
+      <!-- section::modal-2 (for adopt button) -->
+      <!-- You can open the modal using ID.showModal() method -->
+      <!-- <button class="btn" onclick="adopt_button_modal.showModal()">
+        open modal
+      </button>
+      <dialog id="adopt_button_modal" class="modal">
+        <div class="modal-box">
+          <form method="dialog">
+            <button
+              class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            >
+              ✕
+            </button>
+          </form>
+          <h3 class="text-lg font-bold">Hello!</h3>
+          <p class="py-4">Press ESC key or click on ✕ button to close</p>
+        </div>
+      </dialog> -->
     </main>
 
     <!-- section:: footer  -->

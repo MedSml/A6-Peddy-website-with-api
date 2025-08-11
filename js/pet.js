@@ -3,6 +3,7 @@ const loader = document.querySelector("#spinner");
 const petContainer = document.querySelector("#pet-container");
 const petCardsContainer = document.querySelector("#pet-cards-container");
 const errorContainer = document.querySelector("#no-information");
+const likedPetContainer = document.querySelector("#liked-pet-container");
 const modalBodyContent = document.querySelector("#modal-content");
 
 // show spinner before data load
@@ -82,6 +83,7 @@ const displayPetIntoCard = (pets) => {
                 class="flex gap-[0.825rem] justify-evenly items-center md:flex-wrap lg:flex-nowrap"
               >
                 <button
+                onclick="likeButtonsAction('${pet?.petId}')"
                   class="btn border border-[#0E7A8126] bg-white rounded text-[#13131399] hover:bg-[#0E7A81B3] hover:border-[#0E7A81] hover:text-white hover:rounded-lg transition-all duration-[2000ms]"
                   type="button"
                 >
@@ -209,6 +211,31 @@ const loadCategorizePetData = async (categoryName) => {
   }
 };
 
+// function:: liked buttons functionality
+const likeButtonsAction = async (petId) => {
+  try {
+    const responseForPetInfo = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/pet/${petId}`
+    );
+    const infoData = await responseForPetInfo.json();
+
+    // display liked pet image
+    const imageFigure = document.createElement("figure");
+    imageFigure.innerHTML = `
+    <img
+              src="${infoData?.petData?.image}"
+              alt=""
+              class="w-full object-cover border-2 border-[#0E7A81] rounded"
+            />
+    `;
+
+    likedPetContainer.appendChild(imageFigure);
+  } catch (err) {
+    console.error("Error has found:", err);
+  }
+};
+
+// function:: fetching all pets details information from server
 const loadPetDetails = async (petId) => {
   try {
     const responseForPetDetails = await fetch(
@@ -223,6 +250,7 @@ const loadPetDetails = async (petId) => {
   }
 };
 
+// function:: show pet details into modal box
 const showModalWithPetDetails = (petInfo) => {
   modalBodyContent.innerHTML = `
 <figure>
