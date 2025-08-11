@@ -92,6 +92,8 @@ const displayPetIntoCard = (pets) => {
                   <i class="fa-solid fa-thumbs-up"></i>
                 </button>
                 <button
+                id="adopt-btn-${pet?.petId}"
+                onclick="adoptButtonsAction('${pet?.petId}')"
                   class="btn border border-[#0E7A8126] bg-white rounded text-[#0E7A81] hover:bg-[#0E7A81B3] hover:border-[#0E7A81] hover:text-white hover:rounded-xl transition-all duration-[2000ms]"
                   type="button"
                 >
@@ -236,6 +238,19 @@ const likeButtonsAction = async (petId) => {
   } catch (err) {
     console.error("Error has found:", err);
   }
+};
+
+// function:: adopt buttons functionality
+const adoptButtonsAction = (btnId) => {
+  const adoptBtn = document.getElementById(`adopt-btn-${btnId}`);
+
+  // open modal
+  adopt_button_modal.showModal();
+
+  // change the buttons styles
+  adoptBtn.innerText = "Adopted";
+  adoptBtn.setAttribute("disabled", true);
+  adoptBtn.classList.add("text-[#1313134D]", "bg-[#131313]", "rounded-lg");
 };
 
 // function:: fetching all pets details information from server
