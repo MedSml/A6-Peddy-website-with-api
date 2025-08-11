@@ -6,6 +6,7 @@ const errorContainer = document.querySelector("#no-information");
 const likedPetsDisplay = document.querySelector("#liked-pets-display");
 const likedPetContainer = document.querySelector("#liked-pet-container");
 const modalBodyContent = document.querySelector("#modal-content");
+const countDownBox = document.querySelector("#countDown");
 
 // show spinner before data load
 petContainer.classList.add("hidden");
@@ -251,6 +252,29 @@ const adoptButtonsAction = (btnId) => {
   adoptBtn.innerText = "Adopted";
   adoptBtn.setAttribute("disabled", true);
   adoptBtn.classList.add("text-[#1313134D]", "bg-[#131313]", "rounded-lg");
+
+  // run countDown
+  const countDownInterval = setInterval(countDownAction, 1000);
+  // stop the interval for next click
+  setTimeout(() => {
+    clearInterval(countDownInterval);
+  }, 4000);
+
+  // reset the count down value
+  countDownBox.innerText = "3";
+};
+
+// function::set the count down
+const countDownAction = () => {
+  let value = parseInt(countDownBox.innerText);
+  value = value - 1;
+
+  if (value < 0) {
+    document.getElementById("close-adopt-modal").click();
+    return;
+  }
+
+  countDownBox.innerText = value;
 };
 
 // function:: fetching all pets details information from server
