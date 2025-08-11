@@ -45,11 +45,11 @@ const displayPetIntoCard = (pets) => {
                 class="space-y-2 border-b border-[#1313131A] pb-[0.825rem] mb-[0.825rem]"
               >
                 <h5 class="font-inter font-bold text-[1.1rem] text-[#131313]">
-                  ${pet?.pet_name}
+                  ${pet?.pet_name ? pet?.pet_name : "Unknown"}
                 </h5>
                 <p class="text-[1rem] text-[#131313B3]">
                   <i class="fa-solid fa-qrcode"></i> Breed: ${
-                    pet?.breed ? pet?.breed : "Not Available"
+                    pet?.breed ? pet?.breed : "Unknown"
                   }
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
@@ -61,7 +61,7 @@ const displayPetIntoCard = (pets) => {
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
                   <i class="fa-solid fa-mercury"></i> Gender: ${
-                    pet?.gender ? pet?.gender : "Not Available"
+                    pet?.gender ? pet?.gender : "Unknown"
                   }
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
@@ -227,29 +227,37 @@ const showModalWithPetDetails = (petInfo) => {
               <h2
                 class="card-title font-inter font-bold text-[#131313] text-[1.24rem]"
               >
-                ${petInfo?.pet_name}
+                ${petInfo?.pet_name ? petInfo?.pet_name : "Unknown"}
               </h2>
               <!-- pet info  -->
               <div class="mb-[0.5rem] grid md:grid-cols-2 md:gap-x-[2.5rem]">
                 <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-qrcode"></i> Breed: ${petInfo?.breed}
+                  <i class="fa-solid fa-qrcode"></i> Breed: ${
+                    petInfo?.breed ? petInfo?.breed : "Unknown"
+                  }
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-calendar"></i> Birth: ${dateFormate(
+                  <i class="fa-solid fa-calendar"></i> Birth: ${
                     petInfo?.date_of_birth
-                  )}
+                      ? dateFormate(petInfo?.date_of_birth)
+                      : "Not Available"
+                  }
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
-                  <i class="fa-solid fa-mercury"></i> Gender: ${petInfo?.gender}
+                  <i class="fa-solid fa-mercury"></i> Gender: ${
+                    petInfo?.gender ? petInfo?.gender : "Unknown"
+                  }
                 </p>
                 <p class="text-[1rem] text-[#131313B3]">
                   <i class="fa-solid fa-dollar-sign"></i> Price : ${
-                    petInfo?.price
+                    petInfo?.price ? petInfo?.price : "Not Available"
                   }$
                 </p>
                 <p class="text-[1rem] text-[#131313B3] md:col-span-2">
-                  <i class="fa-solid fa-mercury"></i> Vaccinated status:${
+                  <i class="fa-solid fa-mercury"></i> Vaccinated status: ${
                     petInfo?.vaccinated_status
+                      ? petInfo?.vaccinated_status
+                      : "No Status Update"
                   }
                 </p>
               </div>
@@ -264,7 +272,11 @@ const showModalWithPetDetails = (petInfo) => {
                 <p
                   class="font-inter text-justify text-[#131313B3] text-[0.825rem] md:text-[1rem] leading-[1.24rem] mt-3"
                 >
-                  ${petInfo?.pet_details}
+                  ${
+                    petInfo?.pet_details
+                      ? petInfo?.pet_details
+                      : "No Description Available"
+                  }
                 </p>
               </div>
             </div>
