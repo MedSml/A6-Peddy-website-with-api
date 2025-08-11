@@ -224,18 +224,18 @@
       <!-- section::pet-container  -->
       <section
         id="pet-container"
-        class="my-[1.65rem] grid md:grid-cols-7 gap-[1.24rem]"
+        class="my-[1.65rem] grid grid-cols-1 md:grid-cols-12 gap-[1.24rem] items-start"
       >
         <!-- subsection::pet-cards-container  -->
         <div
           id="pet-cards-container"
-          class="md:col-span-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[1.24rem] justify-center items-center"
+          class="md:col-span-9 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[1.24rem] justify-center items-center"
         ></div>
 
         <!-- subsection::no-information -->
         <div
           id="no-information"
-          class="md:col-span-5 flex-col justify-center items-center bg-[#13131308] rounded-xl py-[2.5rem] md:py-[3.5rem] lg:py-[5.2rem] hidden"
+          class="md:col-span-9 flex-col justify-center items-center bg-[#13131308] rounded-xl py-[2.5rem] md:py-[3.5rem] lg:py-[5.2rem] hidden"
         >
           <figure>
             <img
@@ -263,8 +263,13 @@
         <!-- subsection:: liked pet container  -->
         <div
           id="liked-pets-display"
-          class="md:col-span-2 border border-[#1313131A] p-[1rem] rounded-md hidden md:block"
+          class="md:col-span-3 border border-[#1313131A] p-[1rem] rounded-md hidden md:block min-h-[28rem]"
         >
+          <p
+            class="font-semibold italic text-[1rem] text-[#131313B3] text-center underline decoration-dashed underline-offset-2 mb-3"
+          >
+            Pets You Like
+          </p>
           <div
             id="liked-pet-container"
             class="grid grid-cols-1 md:grid-cols-2 gap-[0.825rem] justify-center"
