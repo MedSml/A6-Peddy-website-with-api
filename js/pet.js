@@ -3,6 +3,7 @@ const loader = document.querySelector("#spinner");
 const petContainer = document.querySelector("#pet-container");
 const petCardsContainer = document.querySelector("#pet-cards-container");
 const errorContainer = document.querySelector("#no-information");
+const likedPetsDisplay = document.querySelector("#liked-pets-display");
 const likedPetContainer = document.querySelector("#liked-pet-container");
 const modalBodyContent = document.querySelector("#modal-content");
 
@@ -37,7 +38,8 @@ const displayPetIntoCard = (pets) => {
 
   pets.forEach((pet) => {
     const petCard = document.createElement("div");
-    petCard.classList = "card bg-base-100 border border-[#1313131A] p-[1rem]";
+    petCard.classList =
+      "card bg-base-100 border border-[#1313131A] p-[1rem] h-full";
     petCard.innerHTML = `
     <figure class="w-full">
               <img
@@ -229,6 +231,7 @@ const likeButtonsAction = async (petId) => {
             />
     `;
 
+    likedPetsDisplay.classList.remove("hidden");
     likedPetContainer.appendChild(imageFigure);
   } catch (err) {
     console.error("Error has found:", err);
