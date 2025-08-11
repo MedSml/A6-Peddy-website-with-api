@@ -9,6 +9,9 @@ const modalBodyContent = document.querySelector("#modal-content");
 petContainer.classList.add("hidden");
 loader.classList.replace("hidden", "flex");
 
+// storing fetching data
+let preservingFetchData = [];
+
 // function:: fetching all pets data from server (All Pets)
 const loadAllPetsData = async () => {
   try {
@@ -16,6 +19,9 @@ const loadAllPetsData = async () => {
       `https://openapi.programming-hero.com/api/peddy/pets`
     );
     const allPetsData = await responseToPets.json();
+
+    // storing data
+    preservingFetchData = allPetsData?.pets;
 
     // call for display
     displayPetIntoCard(allPetsData?.pets);
@@ -179,6 +185,9 @@ const loadCategorizePetData = async (categoryName) => {
     const categorizeData = await responseForCategoryName.json();
     const categorizePetData = categorizeData.data;
 
+    // storing data
+    preservingFetchData = categorizePetData;
+
     // running the spinner before loading the data
     setTimeout(() => {
       petContainer.classList.remove("hidden");
@@ -284,6 +293,16 @@ const showModalWithPetDetails = (petInfo) => {
 
   // open modal
   pet_details_modal.showModal();
+};
+
+// sort in descending order base on price
+const sortByPrice = () => {
+  // sort and display
+  displayPetIntoCard(
+    preservingFetchData.sort(
+      (startPet, endPet) => endPet?.price - startPet?.price
+    )
+  );
 };
 
 // calling function globally
